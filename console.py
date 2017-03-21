@@ -28,11 +28,12 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 1:
             print("** class name missing **")
         else:
-            if len(args) > 0 and args[0] in HBNBCommand.valid_classes:
+            if len(args) == 1 and args[0] in HBNBCommand.valid_classes:
                 new_obj = eval(args[0])()
                 print(new_obj.id)
                 new_obj.save()
-            if len(args) > 1:
+            if len(args) > 1 and args[0] in HBNBCommand.valid_classes:
+                key_dict = {}
                 for idx in range(1, len(args)):
                     name_val = args[idx].split("=")
                     if len(name_val) != 2:
@@ -43,7 +44,12 @@ class HBNBCommand(cmd.Cmd):
                             name_val[1] = name_val[1].replace("_", " ")
                             name_val[1] = name_val[1][1:-1]
                             break;
-                    setattr(new_obj, name_val[0], name_val[1])
+                    if name_val[1][0] == '"' and name_val[1][-1] == '"':
+                        name_val[1] = name_val[1][1:-1]
+                    key_dict[name_val[0]] = name_val[1]
+                new_obj = eval(args[0])(**key_dict)
+                print(new_obj.id)
+                new_obj.save()
             else:
                 return
 
