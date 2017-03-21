@@ -25,13 +25,26 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """Create a new Basemodel"""
         args = args.split()
-        if len(args) != 1:
+        if len(args) < 1:
             print("** class name missing **")
         else:
             if len(args) > 0 and args[0] in HBNBCommand.valid_classes:
                 new_obj = eval(args[0])()
                 print(new_obj.id)
                 new_obj.save()
+            if len(args) > 1:
+                for idx in range(1, len(args)):
+                    name_val = args[idx].split("=")
+                    if len(name_val) != 2:
+                        print("{} is invalid name-val pair".format(args[idx]))
+                        continue
+                    for i in name_val[1]:
+                        if i.isalpha() is True:
+                            name_val[1] = name_val[1].replace("_", " ")
+                            name_val[1] = name_val[1][1:-1]
+                            print(name_val[1])
+                            break;
+                    setattr(new_obj, name_val[0], name_val[1])
             else:
                 return
 
