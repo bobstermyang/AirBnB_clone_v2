@@ -1,0 +1,2 @@
+in def test_create -> manually delete
+self.cli.do_destory("BaseModel " + output)
