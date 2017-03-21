@@ -42,7 +42,6 @@ class HBNBCommand(cmd.Cmd):
                         if i.isalpha() is True:
                             name_val[1] = name_val[1].replace("_", " ")
                             name_val[1] = name_val[1][1:-1]
-                            print(name_val[1])
                             break;
                     setattr(new_obj, name_val[0], name_val[1])
             else:
