@@ -41,3 +41,7 @@ class FileStorage:
                     FileStorage.__objects[k] = eval(cls)(temp[k])
         except Exception as e:
             pass
+
+    def delete(self, obj=None):
+        if hasattr(obj, '__object'):
+            del obj
