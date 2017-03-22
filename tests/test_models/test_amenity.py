@@ -3,6 +3,7 @@ from datetime import datetime
 from models import *
 from console import HBNBCommand
 
+
 class Test_AmenityModel(unittest.TestCase):
     """
     Test the amenity model class
