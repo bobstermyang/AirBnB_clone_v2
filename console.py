@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
                         if i.isalpha() is True:
                             name_val[1] = name_val[1].replace("_", " ")
                             name_val[1] = name_val[1][1:-1]
-                            break;
+                            break
                     if name_val[1][0] == '"' and name_val[1][-1] == '"':
                         name_val[1] = name_val[1][1:-1]
                     key_dict[name_val[0]] = name_val[1]

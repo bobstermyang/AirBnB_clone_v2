@@ -22,10 +22,16 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """initialize class object"""
-        self.created_at = datetime.now()
-        self.id = str(uuid.uuid4())
+        if getenv('HBNB_TYPE_STORAGE') != 'db':
+            if len(args) > 0:
+                for k in args[0]:
+                    setattr(self, k, args[0][k])
         for name, val in kwargs.items():
             setattr(self, name, val)
+        if not hasattr(self, 'created_at'):
+            self.created_at = datetime.now()
+        if not hasattr(self, 'id'):
+            self.id = str(uuid.uuid4())
 
     def save(self):
         """method to update self"""

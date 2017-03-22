@@ -3,6 +3,7 @@ from models import *
 from models.base_model import BaseModel, Base, Column, String, Table
 import os
 
+
 class Amenity(BaseModel, Base):
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         __tablename__ = "amenities"
