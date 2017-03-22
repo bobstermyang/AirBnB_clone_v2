@@ -4,7 +4,7 @@ from models import *
 
 
 class HBNBCommand(cmd.Cmd):
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
     storage.reload()
 
     valid_classes = ["BaseModel", "User", "State",
@@ -79,7 +79,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         if len(args) == 1:
-            print("** instance id missing **")
+            if args[0] in HBNBCommand.valid_classes:
+                print("** instance id missing **")
+            else:
+                print("** class name missing **")
             return
         if args[0] not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
@@ -114,13 +117,26 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         if len(args) == 1:
-            print("** instance id missing **")
+            if args[0] not in HBNBCommand.valid_classes:
+                print("** class name missing **")
+            else:
+                print("** instance id missing **")
             return
         if len(args) == 2:
-            print("** attribute name missing **")
+            if args[0] not in HBNBCommand.valid_classes:
+                print("** class name missing **")
+            elif len(args[1]) != 36:
+                print("** instance id missing **")
+            else:
+                print("** attribute name missing **")
             return
         if len(args) == 3:
-            print("** value missing **")
+            if args[0] not in HBNBCommand.valid_classes:
+                print("** class name missing **")
+            elif len(args[1]) != 36:
+                print("** instance id missing **")
+            else:
+                print("** value missing **")
             return
         if args[0] not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
