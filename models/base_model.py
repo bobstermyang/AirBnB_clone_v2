@@ -28,10 +28,14 @@ class BaseModel:
                     setattr(self, k, args[0][k])
         for name, val in kwargs.items():
             setattr(self, name, val)
-        if not hasattr(self, 'created_at'):
-            self.created_at = datetime.now()
-        if not hasattr(self, 'id'):
+        if getenv('HBNB_TYPE_STORAGE') == 'db':
+            self.create_at = datetime.now()
             self.id = str(uuid.uuid4())
+        else:
+            if hasattr(self, 'created_at') is False:
+                self.created_at = datetime.now()
+            if hasattr(self, 'id') is False:
+                self.id = str(uuid.uuid4())
 
     def save(self):
         """method to update self"""
