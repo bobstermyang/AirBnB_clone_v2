@@ -60,7 +60,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         if len(args) == 1:
-            print("** instance id missing **")
+            if len(args[0]) == 36:
+                print("** no instance found **")
+            else:
+                print("** instance id missing **")
             return
         if args[0] not in HBNBCommand.valid_classes:
             print("** class doesn't exist **")
