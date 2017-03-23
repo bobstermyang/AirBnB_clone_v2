@@ -65,11 +65,11 @@ class Test_Console(unittest.TestCase):
         output = out.getvalue().strip()
         self.assertEqual(output, "** class doesn't exist **")
 
-#    def test_show_error_class_missing(self):
-#        with captured_output() as (out, err):
-#            self.cli.do_show("State d3da85f2-499c-43cb-b33d-3d7935bc808c")
-#        output = out.getvalue().strip()
-#        self.assertEqual(output, "** no instance found **")
+    def test_show_error_class_missing(self):
+        with captured_output() as (out, err):
+            self.cli.do_show("d3da85f2-499c-43cb-b33d-3d7935bc808c")
+        output = out.getvalue().strip()
+        self.assertEqual(output, "** no instance found **")
 
     def test_create(self):
         with captured_output() as (out, err):
