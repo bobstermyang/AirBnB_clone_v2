@@ -1,6 +1,7 @@
 import unittest
 from datetime import datetime
 from models import *
+from console import HBNBCommand
 
 
 class Test_BaseModel(unittest.TestCase):
@@ -16,6 +17,7 @@ class Test_BaseModel(unittest.TestCase):
                      'id': '46458416-e5d5-4985-aa48-a2b369d03d2a',
                      'name': 'model1'}
         self.model2 = BaseModel(test_args)
+        self.cli = HBNBCommand()
         self.model2.save()
 
     def test_instantiation(self):
@@ -47,6 +49,10 @@ class Test_BaseModel(unittest.TestCase):
         self.assertEqual(jsonified["created_at"], '2017-02-10 02:06:55.258849')
         self.assertTrue(hasattr(jsonified, "__class__"))
         self.assertEqual(jsonified["__class__"], "BaseModel")
+
+    def tearDown(self):
+        self.cli.do_destroy("BaseModel " + self.model1.id)
+        self.cli.do_destroy("BaseModel " + self.model2.id)
 
 if __name__ == "__main__":
     unittest.main()

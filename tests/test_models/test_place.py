@@ -1,6 +1,7 @@
 import unittest
 from datetime import datetime
 from models import *
+from console import HBNBCommand
 
 
 class Test_PlaceModel(unittest.TestCase):
@@ -9,6 +10,7 @@ class Test_PlaceModel(unittest.TestCase):
     """
 
     def setUp(self):
+        self.cli = HBNBCommand()
         self.model = Place()
         self.model.save()
 
@@ -35,6 +37,9 @@ class Test_PlaceModel(unittest.TestCase):
         self.assertEqual(self.model.latitude, 0.0)
         self.assertEqual(self.model.longitude, 0.0)
         self.assertEqual(self.model.amenities, [''])
+
+    def tearDown(self):
+        self.cli.do_destroy("Place " + self.model.id)
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 import unittest
 from datetime import datetime
 from models import *
+from console import HBNBCommand
 
 
 class Test_UserModel(unittest.TestCase):
@@ -9,6 +10,7 @@ class Test_UserModel(unittest.TestCase):
     """
 
     def setUp(self):
+        self.cli = HBNBCommand()
         self.model = User()
         self.model.save()
 
@@ -21,6 +23,9 @@ class Test_UserModel(unittest.TestCase):
         self.assertEqual(self.model.password, "")
         self.assertEqual(self.model.first_name, "")
         self.assertEqual(self.model.last_name, "")
+
+    def tearDown(self):
+        self.cli.do_destroy("User " + self.model.id)
 
 
 if __name__ == "__main__":
