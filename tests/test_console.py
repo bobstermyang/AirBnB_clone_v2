@@ -29,7 +29,7 @@ class Test_Console(unittest.TestCase):
         test_args = {'updated_at': datetime(2017, 2, 11, 23, 48, 34, 339879),
                      'id': 'd3da85f2-499c-43cb-b33d-3d7935bc808c',
                      'created_at': datetime(2017, 2, 11, 23, 48, 34, 339743),
-                     'name': 'Ace'}
+                     'name': 'Ace',}
         self.model = BaseModel(test_args)
         self.model.save()
 
@@ -67,7 +67,7 @@ class Test_Console(unittest.TestCase):
 
     def test_show_error_class_missing(self):
         with captured_output() as (out, err):
-            self.cli.do_show("d3da85f2-499c-43cb-b33d-3d7935bc808c")
+            self.cli.do_show("State d3da85f2-499c-43cb-b33d-3d7935bc808c")
         output = out.getvalue().strip()
         self.assertEqual(output, "** no instance found **")
 
