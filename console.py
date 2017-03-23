@@ -42,6 +42,7 @@ class HBNBCommand(cmd.Cmd):
                     for i in name_val[1]:
                         if i.isalpha() is True:
                             name_val[1] = name_val[1][1:-1]
+                            name_val[1] = name_val[1][1:-1]
                             break
                     if name_val[1][0] == '"' and name_val[1][-1] == '"':
                         name_val[1] = name_val[1][1:-1]
