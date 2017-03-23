@@ -55,5 +55,6 @@ class BaseModel:
         if ("updated_at" in dupe):
             dupe["updated_at"] = str(dupe["updated_at"])
         dupe["__class__"] = type(self).__name__
-        dupe.pop("_sa_instance_state", None)
+        if dupe.get("_sa_instance_state") is not None:
+            dupe.pop("_sa_instance_state", None)
         return dupe
