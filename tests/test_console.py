@@ -67,7 +67,7 @@ class Test_Console(unittest.TestCase):
 
     def test_show_error_class_missing(self):
         with captured_output() as (out, err):
-            self.cli.do_show("d3da85f2-499c-43cb-b33d-3d7935bc808c")
+            self.cli.do_show("State d3da85f2-499c-43cb-b33d-3d7935bc808c")
         output = out.getvalue().strip()
         self.assertEqual(output, "** no instance found **")
 
@@ -95,7 +95,7 @@ class Test_Console(unittest.TestCase):
         self.cli.do_destroy("BaseModel f519fb40-1f5c-458b-945c-2ee8eaaf4900")
 
         with captured_output() as (out, err):
-            self.cli.do_show("BaseModel f519fb40-1f5c-458b-945c-2ee8eaaf4900")
+            self.cli.do_show("State f519fb40-1f5c-458b-945c-2ee8eaaf4900")
         output = out.getvalue().strip()
         self.assertEqual(output, "** no instance found **")
 
