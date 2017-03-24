@@ -18,7 +18,7 @@ class DBStorage:
 
     valid_classes = {"Amenity": Amenity, "City": City, "State": State,
                      "Place": Place, "Review": Review,
-                     "User": User, "PlaceAmenity", PlaceAmenity}
+                     "User": User, "PlaceAmenity": PlaceAmenity}
 
     def __init__(self):
         mysql_usr = os.getenv('HBNB_MYSQL_USER')
