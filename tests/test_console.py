@@ -88,13 +88,42 @@ class Test_Console(unittest.TestCase):
 
     def test_create_state(self):
         with captured_output() as (out, err):
-            self.cli.do_create('State name="California"')
+            self.cli.do_create('State name=\"California\"')
         output3 = out.getvalue().strip()
 
         with captured_output() as (out, err):
             self.cli.do_show("State {}".format(output3))
         output4 = out.getvalue().strip()
         self.assertTrue(output3 in output4)
+
+    def test_update_correct_docreate(self):
+        self.cli.do_create("State name=\"California\"")
+        self.cli.do_create("State name=\"Arizona\"")
+        with captured_output() as (out, err):
+            self.cli.do_all("State")
+        output = out.getvalue().strip()
+        self.assertTrue("California" in output)
+        self.assertTrue("Arizona" in output)
+        self.assertFalse("Ohio" in output)
+
+    def test_update_correct_docreate_variables(self):
+        phrase = "Place city_id=\"0001\" user_id=\"0001\"" + \
+                 "name=\"My_little_house\" number_rooms=4 number_bathrooms=2" \
+                 + "max_guest=10 price_by_night=300 latitude=37.773972" + \
+                 " longitude=-122.431297"
+        self.cli.do_create(phrase)
+        with captured_output() as (out, err):
+            self.cli.do_all("Place")
+        output = out.getvalue().strip()
+        self.assertTrue("price_by_night" in output)
+        self.assertTrue("datetime.datetime" in output)
+
+    def test_db_create_simple(self):
+        self.cli.do_create("State name=\"California\"")
+        with captured_output() as (out, err):
+            self.cli.do_all("State")
+        output = out.getvalue().strip()
+        self.assertTrue("California" in output)
 
     def test_destroy_correct(self):
         test_args = {'updated_at': datetime(2017, 2, 12, 00, 31, 53, 331997),
