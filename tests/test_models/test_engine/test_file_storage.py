@@ -5,6 +5,7 @@ from models.engine.file_storage import FileStorage
 from models import *
 from console import HBNBCommand
 
+
 class Test_FileStorage(unittest.TestCase):
     """
     Test the file storage class
