@@ -6,7 +6,7 @@ from models.city import City
 from models.state import State
 from models.base_model import BaseModel
 from models.base_model import Base
-from models.place import Place
+from models.place import Place, PlaceAmenity
 from models.review import Review
 from models.user import User
 import os
@@ -18,7 +18,7 @@ class DBStorage:
 
     valid_classes = {"Amenity": Amenity, "City": City, "State": State,
                      "Place": Place, "Review": Review,
-                     "User": User}
+                     "User": User, "PlaceAmenity", PlaceAmenity}
 
     def __init__(self):
         mysql_usr = os.getenv('HBNB_MYSQL_USER')
