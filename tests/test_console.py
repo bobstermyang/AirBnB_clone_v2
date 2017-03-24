@@ -117,6 +117,7 @@ class Test_Console(unittest.TestCase):
         output = out.getvalue().strip()
         self.assertTrue("price_by_night" in output)
         self.assertTrue("datetime.datetime" in output)
+        self.assertTrue("122.431297" in output)
 
     def test_db_create_simple(self):
         self.cli.do_create("State name=\"California\"")
