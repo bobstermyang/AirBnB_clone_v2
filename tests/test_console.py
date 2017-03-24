@@ -86,6 +86,7 @@ class Test_Console(unittest.TestCase):
         output2 = out.getvalue().strip()
         self.assertTrue(output in output2)
 
+    def test_create_state(self):
         with captured_output() as (out, err):
             self.cli.do_create('State name="California"')
         output3 = out.getvalue().strip()
