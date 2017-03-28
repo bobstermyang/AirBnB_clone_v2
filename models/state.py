@@ -11,14 +11,13 @@ class State(BaseModel, Base):
     if os.getenv("HBNB_TYPE_STORAGE") == "db":
         __tablename__ = "states"
         name = Column(String(128), nullable=False)
-        cities = relationship("City", backref="state")
+        cities = relationship("City", backref="State")
     else:
         name = ""
 
     def __init__(self, *args, **kwargs):
         self.cls = HBNBCommand()
         super().__init__(*args, **kwargs)
-
 
     if os.getenv("HBNB_TYPE_STORAGE") != "db":
         def cities(self):
