@@ -11,7 +11,7 @@ def states_html():
 
 
 @app.teardown_appcontext
-def teardown(self):
+def teardown(exception):
     storage.close()
 
 if __name__ == '__main__':
