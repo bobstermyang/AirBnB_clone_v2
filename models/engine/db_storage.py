@@ -47,8 +47,12 @@ class DBStorage:
                 for instance in self.__session.query(val_cls):
                     query_info[instance.id] = instance
         else:
-            for instance in self.__session.query(cls):
-                query_info[instance.id] = instance
+            if (isinstance(cls, str) is True):
+                for instance in self.__session.query(eval(cls)):
+                    query_info[instance.id] = instance
+            else:
+                for instance in self.__session.query(cls):
+                    query_info[instance.id] = instance
         return query_info
 
     def new(self, obj):
