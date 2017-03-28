@@ -2,12 +2,14 @@
 from flask import Flask
 app = Flask(__name__)
 
+
 @app.route('/')
 def hello_world():
     """
     return 'Hello HBNB'
     """
     return 'Hello HBNB!'
+
 
 @app.route('/hbnb')
 def hello_hbnb():
