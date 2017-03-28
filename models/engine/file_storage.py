@@ -44,6 +44,9 @@ class FileStorage:
         except Exception as e:
             pass
 
+    def close(self):
+        self.save()
+
     def delete(self, obj=None):
         if hasattr(obj, '__object'):
             del obj
