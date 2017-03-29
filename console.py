@@ -103,12 +103,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, args):
         """Usage: all Basemodel or all"""
-        if args not in HBNBCommand.valid_classes and len(args) != 0:
+        if args[0] not in HBNBCommand.valid_classes and len(args) != 0:
             print("** class doesn't exist **")
             return
-        elif args in HBNBCommand.valid_classes:
-            all_objs = storage.all(args)
-        elif len(args) == 0:
+        elif args[0] in HBNBCommand.valid_classes:
+            all_objs = storage.all(args[0])
+        elif args is None:
             all_objs = storage.all()
         else:
             return
