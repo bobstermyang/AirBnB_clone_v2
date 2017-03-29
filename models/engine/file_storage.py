@@ -7,12 +7,22 @@ from models import *
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
+    valid_classes = ["State", "City", "Amenity", "Place", "BaseModel",
+                     "Review", "User"]
 
     def __init__(self):
         self.reload()
 
     def all(self, cls=None):
-        return FileStorage.__objects
+        if cls in self.valid_classes:
+            cls_obj = eval(cls)
+            return_cls = {}
+            for obj_id, obj_obj in FileStorage.__objects.items():
+                if type(obj_obj) == cls_obj:
+                    return_cls[obj_id] = obj_obj
+            return return_cls
+        else:
+            return FileStorage.__objects
 
     def new(self, obj):
         if obj is not None:

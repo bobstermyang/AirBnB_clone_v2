@@ -19,5 +19,13 @@ class State(BaseModel, Base):
         super().__init__(*args, **kwargs)
 
     if os.getenv("HBNB_TYPE_STORAGE") != "db":
-        def cities(self):
-            return storage.all("City")
+        def cities(id, self):
+            valid_cities = {}
+            state_cities = storage.all("City")
+            if id is None or id == "":
+                return state_cities
+            else:
+                for city_id, val_city in state_cities.items():
+                    if val_city.state_id == id:
+                        valid_cities[city_id] = val_city
+                return valid_cities
