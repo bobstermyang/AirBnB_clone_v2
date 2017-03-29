@@ -20,4 +20,4 @@ class State(BaseModel, Base):
 
     if os.getenv("HBNB_TYPE_STORAGE") != "db":
         def cities(self):
-            storage.all('City')
+            return storage.all("City")
