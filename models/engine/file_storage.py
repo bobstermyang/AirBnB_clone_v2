@@ -21,8 +21,10 @@ class FileStorage:
                 if type(obj_obj) == cls_obj:
                     return_cls[obj_id] = obj_obj
             return return_cls
-        else:
+        elif cls is None:
             return FileStorage.__objects
+        else:
+            return 'class not found'
 
     def new(self, obj):
         if obj is not None:
