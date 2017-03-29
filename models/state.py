@@ -16,7 +16,6 @@ class State(BaseModel, Base):
         name = ""
 
     def __init__(self, *args, **kwargs):
-        self.cls = HBNBCommand()
         super().__init__(*args, **kwargs)
 
     if os.getenv("HBNB_TYPE_STORAGE") != "db":

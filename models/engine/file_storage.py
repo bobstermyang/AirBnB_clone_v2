@@ -45,7 +45,7 @@ class FileStorage:
             pass
 
     def close(self):
-        self.save()
+        self.reload()
 
     def delete(self, obj=None):
         if hasattr(obj, '__object'):
