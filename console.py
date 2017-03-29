@@ -107,8 +107,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         elif args in HBNBCommand.valid_classes:
-            all_objs = {k: v for (k, v) in storage.all().items()
-                        if isinstance(v, eval(args))}
+            all_objs = storage.all(args)
         elif len(args) == 0:
             all_objs = storage.all()
         else:
