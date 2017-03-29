@@ -9,14 +9,15 @@ app = Flask(__name__)
 @app.route('/states/<id>')
 def states_html(id):
     states = storage.all("State")
-    if (id == None):
+    if (id is None):
         return render_template('9-states.html', states=states, id='all')
     else:
         for y in states.values():
             if y.id == id:
-                state = y;
+                state = y
                 return render_template('9-states.html', states=state, id='one')
         return render_template('9-states.html', states=states, id='none')
+
 
 @app.teardown_appcontext
 def teardown(self):
