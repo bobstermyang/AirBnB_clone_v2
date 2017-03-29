@@ -1,1 +1,1 @@
-#Setting up Flask for HBNB Project
+#Practice flask and jinja
