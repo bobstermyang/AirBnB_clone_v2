@@ -3,22 +3,28 @@
     <HEAD>
         <TITLE>HBNB</TITLE>
     </HEAD>
+    {% if id %}
+    {% for y in states.values() %}
+    {% if y.id == id %}
+    <BODY>
+      <H1>State: {{ y.name }}</H1>
+      <H3>Cities:</H3>
+      <UL>
+	{% for x in y.cities %}
+	<LI>{{ x.id }}: <B>{{ x.name }}</B></LI>
+	{% endfor %}
+      </UL>
+    </BODY>
+    {% endif %}
+    {% endfor %}
+    {% else %}
     <BODY>
       <H1>States</H1>
       <UL>
-	{% if id == '' %}
 	{% for y in states.values()|sort(attribute='name') %}
-	<
-	{% else %}
-	{% for y in states.values()|sort(attribute='name') %}
-	<li>{{ y.id }}: <b>{{y.name}}</b></li>
-	<ul>
-	  {% for x in y.cities|sort(attribute='name') %}
-	  <li>{{ x.id }}: <b>{{ x.name }}</b> </li>
-	  {% endfor %}
-	</ul>
+	<li>{{ y.id }}: <b>{{ y.name }}</b></li>
 	{% endfor %}
-	{% endif %}
       </UL>
     </BODY>
+    {% endif %}
 </HTML>

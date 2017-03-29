@@ -3,12 +3,13 @@ from models import storage
 from flask import Flask, render_template
 app = Flask(__name__)
 
-@app.route('/states', defaults={'id': ''})
-@app.route('/states/', defaults={'id': ''})
-@app.route('/states/<id>'}
+
+@app.route('/states', defaults={'id': None})
+@app.route('/states/<id>')
 def states_html(id):
     states = storage.all("State")
     return render_template('9-states.html', states=states, id=id)
+
 
 @app.teardown_appcontext
 def teardown(self):
