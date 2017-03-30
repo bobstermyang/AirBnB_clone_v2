@@ -24,7 +24,7 @@ class FileStorage:
         elif cls is None:
             return FileStorage.__objects
         else:
-            return 'class not found'
+            pass
 
     def new(self, obj):
         if obj is not None:

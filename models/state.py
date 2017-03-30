@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from models import *
+import models
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship, backref
@@ -19,9 +20,10 @@ class State(BaseModel, Base):
         super().__init__(*args, **kwargs)
 
     if os.getenv("HBNB_TYPE_STORAGE") != "db":
+        @property
         def cities(self):
             valid_cities = []
-            state_cities = storage.all("City")
+            state_cities = models.storage.all("City")
             for city_id, val_city in state_cities.items():
                 if val_city.state_id == self.id:
                     valid_cities.append(val_city)
