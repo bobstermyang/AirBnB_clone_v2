@@ -6,6 +6,9 @@ app = Flask(__name__)
 
 @app.route('/hbnb')
 def filter_display():
+    """
+    return a webpage
+    """
     states = storage.all("State")
     amenities = storage.all("Amenity")
     places = storage.all("Place")
@@ -16,6 +19,9 @@ def filter_display():
 
 @app.teardown_appcontext
 def teardown(self):
+    """
+    teardown
+    """
     storage.close()
 
 if __name__ == '__main__':
