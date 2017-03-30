@@ -15,10 +15,10 @@ class FileStorage:
 
     def all(self, cls=None):
         if cls in self.valid_classes:
-            cls_obj = eval(cls)
+            cls_obj = eval(cls)()
             return_cls = {}
             for obj_id, obj_obj in FileStorage.__objects.items():
-                if type(obj_obj) == cls_obj:
+                if type(obj_obj) == type(cls_obj):
                     return_cls[obj_id] = obj_obj
             return return_cls
         elif cls is None:
