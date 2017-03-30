@@ -16,7 +16,7 @@
 }
 
 .amenities {
-    widt: 25%;
+    width: 25%;
     height: 100%;
     float: left;
 }
@@ -91,4 +91,6 @@ li {
     padding-bottom: 30px;
     max-height: 300px;
     overflow: hidden;
+    overflow-y: scroll;
+    z-index: 10;
 }

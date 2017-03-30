@@ -41,11 +41,13 @@
       </section>
       <section class="places">
 	<h1>Places</h1>
-	{% for place in places.values() %}
+	{% for place in places.values()|sort(attribute='name') %}
 	<article>
-	  <h2>{{ place.name }}</h2>
-	  <div class="price_by_night">
-	  {{ place.price_by_night }}
+	  <div class="title_price">
+	    <h2>{{ place.name }}</h2>
+	    <div class="price_by_night">
+	      ${{ place.price_by_night }}
+	    </div>
 	  </div>
 	  <div class="information">
 	    <div class="max_guest">
@@ -74,13 +76,17 @@
 	    </div>
 	  </div>
 	  <div class="user">
-	    <p><b>Owner: </b>Julien Barbier</b>
-</div>
-<div class="description">
-	    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque nunc tortor, tempor et, gravida eu, faucibus vel, justo. Duis dolor eros, laoreet vel, luctus quis, consectetuer at, enim. Sed ac felis at tellus dictum pretium. Quisque cursus lorem ut justo. Pellentesque tempus ultricies quam. Curabitur laoreet elementum velit. Ut purus. Praesent nonummy sem a felis. Duis et elit. Vestibulum risus quam, tempor id, fermentum nec, rhoncus semper, enim. Donec bibendum. Nam semper nulla eget mi gravida posuere.</p>
-</div>
-</article>
-{% endfor %}
+	    {% for user in users.values() %}
+	    {% if user.id == place.user_id %}
+	    <p><b>Owner: </b>{{ user.first_name }} {{ user.last_name }}</p>
+	    {% endif %}
+	    {% endfor %}
+	  </div>
+	  <div class="description">
+	    <p>{{ place.description|safe }}</p>
+	  </div>
+	</article>
+	{% endfor %}
       </section>
     </div>
     <footer>
