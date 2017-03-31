@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+python program that deploys an hbnb site with places
+"""
 from models import storage
 from flask import Flask, render_template
 app = Flask(__name__)
